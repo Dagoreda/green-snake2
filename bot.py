@@ -16,9 +16,10 @@ async def clear(ext, amount=5):
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
-async def mute(ext):
+async def mute(ext, member : discord.Member):
 	role = discord.utilities.get(ext.guild.roles, name = "Muted")
-	await ext.add_roles(role)
+	await member.add_roles(role)
+	await ext.send(f"Выдал мут {member.mention}")
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
