@@ -60,4 +60,4 @@ async def on_member_join(member):
 async def on_member_remove(member):
 	print(f"{member} покинул сервер")
 
-client.run("NjkyMzMxMzYyNDcyMDM0MzM0.Xnt_hg.mEpcL5PJYR6O6YQieo-jHSMoIbA")
+client.run("NjkyMzMxMzYyNDcyMDM0MzM0.XnxlNQ.SmE61gvuh7Id84XKGprR66fLBCsk")
