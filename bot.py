@@ -1,6 +1,7 @@
 import discord
 import random
 import os
+import asyncio
 from discord.ext import commands
 client = commands.Bot(command_prefix = '-+')
 
@@ -19,7 +20,19 @@ async def clear(ext, amount=5):
 async def mute(ext, member : discord.Member):
 	role = discord.utils.get(ext.guild.roles, name = "Muted")
 	await member.add_roles(role)
+	await ext.channel.purge(1)
 	await ext.send(f"Выдал мут {member.mention}")
+	
+@client.command()
+@commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
+async def tempmute(ext, member : discord.Member, time, *, reason):
+	role = discord.utils.get(ext.guild.roles, name = "Muted")
+	await member.add_roles(role)
+	await ext.channel.purge(1)
+	await ext.send(f"Выдал мут {member.mention} за {reason} на {time} минут.")
+	await asyncio.sleep(time * 60)
+	await member.remove_roles(role)
+	await ext.send(f"Размутил {member.mention} который был замучен за {reason}")
 	
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
