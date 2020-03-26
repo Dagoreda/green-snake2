@@ -16,6 +16,12 @@ async def clear(ext, amount=5):
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
+async def mute(ext):
+	role = discord.utilities.get(ext.guild.roles, name = "Muted")
+	await ext.add_roles(role)
+
+@client.command()
+@commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
 async def unban(ext, *, member):
 	await ext.channel.purge(limit=1)
 	banned_users = await ext.guild.bans()
