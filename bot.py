@@ -1,5 +1,6 @@
 import discord
 import random
+import os
 from discord.ext import commands
 client = commands.Bot(command_prefix = '-+')
 
@@ -59,5 +60,5 @@ async def on_member_join(member):
 @client.event
 async def on_member_remove(member):
 	print(f"{member} покинул сервер")
-
-client.run("NjkyMzMxMzYyNDcyMDM0MzM0.Xnxp0A.TUVd7Cc5YroKkevwZzpEnjKeRUg")
+token = os.environ.get('BOT_TOKEN')
+client.run(str(token))
