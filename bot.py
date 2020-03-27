@@ -36,7 +36,7 @@ async def tempmute(ext, member : discord.Member, time):
 	await member.add_roles(role)
 	await ext.send(f"Выдал мут {member.mention} на {time} минут")
 	r = Timer(time * 60, unmute, (member))
-	r.start()
+	await r.start()
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
