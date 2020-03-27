@@ -1,5 +1,5 @@
 import discord
-from threading import Timer
+import asyncio
 import random
 import os
 from discord.ext import commands
@@ -35,8 +35,9 @@ async def tempmute(ext, member : discord.Member, time):
 	role = discord.utils.get(ext.guild.roles, name = "Muted")
 	await member.add_roles(role)
 	await ext.send(f"Выдал мут {member.mention} на {time} минут")
-	r = Timer(time * 60, unmute, (member))
-	await r.start()
+	await asyncio.sleep(time * 60)
+	await member.remove_roles(role)
+	await ext.send(f"Размутил {member.mention}")
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
