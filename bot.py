@@ -17,10 +17,10 @@ async def clear(ext, amount=5):
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
-async def mute(ext, member : discord.Member):
+async def mute(ext, member : discord.Member,*, reason):
 	role = discord.utils.get(ext.guild.roles, name = "Muted")
 	await member.add_roles(role)
-	await ext.send(f"Выдал мут {member.mention}")
+	await ext.send(f"Выдал мут {member.mention} за {reason}")
 	
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
@@ -35,7 +35,7 @@ async def tempmute(ext, member : discord.Member, time):
 	role = discord.utils.get(ext.guild.roles, name = "Muted")
 	await member.add_roles(role)
 	await ext.send(f"Выдал мут {member.mention} на {time} минут")
-	await asyncio.sleep(time * 60)
+	await asyncio.sleep(float(time) * 60)
 	await member.remove_roles(role)
 	await ext.send(f"Размутил {member.mention}")
 
