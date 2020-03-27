@@ -31,13 +31,13 @@ async def unmute(ext, member : discord.Member):
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
-async def tempmute(ext, member : discord.Member, time):
+async def tempmute(ext, member : discord.Member, time, *, reason):
 	role = discord.utils.get(ext.guild.roles, name = "Muted")
 	await member.add_roles(role)
-	await ext.send(f"Выдал мут {member.mention} на {time} минут")
+	await ext.send(f"Выдал мут {member.mention} на {time} минут за {reason}")
 	await asyncio.sleep(float(time) * 60)
 	await member.remove_roles(role)
-	await ext.send(f"Размутил {member.mention}")
+	await ext.send(f"Размутил {member.mention} который был замучен за {reason}")
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
