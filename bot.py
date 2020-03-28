@@ -21,6 +21,11 @@ async def mute(ext, member : discord.Member,*, reason):
 	role = discord.utils.get(ext.guild.roles, name = "Muted")
 	await member.add_roles(role)
 	await ext.send(f"Выдал мут {member.mention} за {reason}")
+	channel = client.get_channel(692427552727498813)
+	embed_obj = discord.Embed(title = "Mute")
+	embed_obj.add_field(name = "Person", value= member.mention)
+	embed_obj.add_field(name = "Reason", value= reason)
+	await channel.send(embed = embed_obj)
 	
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
@@ -28,6 +33,11 @@ async def unmute(ext, member : discord.Member):
 	role = discord.utils.get(ext.guild.roles, name = "Muted")
 	await member.remove_roles(role)
 	await ext.send(f"Размутил {member.mention}")
+
+def has_id(member):
+    def predicate(ext):
+        return ext.message.author.id == member
+    return commands.check(predicate)
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
