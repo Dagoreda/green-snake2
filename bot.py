@@ -39,13 +39,6 @@ def has_id(member):
         return ext.message.author.id == member
     return commands.check(predicate)
 
-MaksId = os.environ.get("MaksId")
-Message = os.environ.get(Message)
-@client.command()
-@has_id(int(MaksId))
-async def formaks(ext):
-	ext.send(str(Message))
-
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
 async def tempmute(ext, member : discord.Member, time, *, reason):
