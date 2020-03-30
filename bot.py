@@ -25,7 +25,8 @@ async def nick(ext, *, nickname):
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
 async def mute(ext, member : discord.Member,*, reason):
 	if member.id == int(452312332362579998) or member.id == int(433525822956109843) or member.id == int(667712678730530846) or member.id == int(366930064194928650):
-		await ext.send("Этому человеку нельзя выдать мут")
+		await ext.channel.purge(limit=1)
+		await ext.send(ext.message.author.mention + ", этому человеку нельзя выдать мут")
 	else:
 		role = discord.utils.get(ext.guild.roles, name = "Muted")
 		await member.add_roles(role)
@@ -76,7 +77,8 @@ async def unban(ext, *, member):
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
 async def kick(ext, member : discord.Member, *, reason=None):
 	if member.id == int(452312332362579998) or member.id == int(433525822956109843) or member.id == int(667712678730530846) or member.id == int(366930064194928650):
-		await ext.send("Этого человека нельзя кикнуть")
+		await ext.channel.purge(limit=1)
+		await ext.send(ext.message.author.mention + ", этого человека нельзя кикнуть")
 	else:
 		await ext.channel.purge(limit=1)
 		await ext.send(f"{member.mention} был выгнан за '{reason}'")
@@ -87,7 +89,8 @@ async def kick(ext, member : discord.Member, *, reason=None):
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
 async def ban(ext, member : discord.Member, *, reason=None):
 	if member.id == int(452312332362579998) or member.id == int(433525822956109843) or member.id == int(667712678730530846) or member.id == int(366930064194928650):
-		await ext.send("Этого человека нельзя забанить")
+		await ext.channel.purge(limit=1)
+		await ext.send(ext.message.author.mention + ", этого человека нельзя забанить")
 	else:
 		await ext.channel.purge(limit=1)
 		await ext.send(f"{member.mention} был заблокирован за '{reason}'")
