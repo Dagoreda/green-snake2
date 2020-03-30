@@ -49,8 +49,6 @@ async def tempmute(ext, member : discord.Member, time, *, reason):
 	if member.id == int(452312332362579998) or member.id == int(433525822956109843) or member.id == int(667712678730530846) or member.id == int(366930064194928650):
 		await ext.channel.purge(limit=1)
 		await ext.send(ext.message.author.mention + ", этому человеку нельзя выдать мут")
-		await asyncio.sleep(10)
-		await ext.channel.purge(limit=1)
 	else:
 		role = discord.utils.get(ext.guild.roles, name = "Muted")
 		await member.add_roles(role)
