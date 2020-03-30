@@ -16,16 +16,20 @@ async def clear(ext, amount=5):
 	await ext.channel.purge(limit=amount+1)
 
 @client.command()
+async def nick(ext, *, nickname):
+	await ext.channel.purge(limit=1)
+	member = ext.message.author
+	await member.edit(nick=str(nickname))
+
+@client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
 async def mute(ext, member : discord.Member,*, reason):
-	role = discord.utils.get(ext.guild.roles, name = "Muted")
-	await member.add_roles(role)
-	await ext.send(f"Выдал мут {member.mention} за {reason}")
-	channel = client.get_channel(692427552727498813)
-	embed_obj = discord.Embed(title = "Mute")
-	embed_obj.add_field(name = "Person", value= member.mention)
-	embed_obj.add_field(name = "Reason", value= reason)
-	await channel.send(embed = embed_obj)
+	if member.id == int(452312332362579998) or member.id == int(433525822956109843) or member.id == int(667712678730530846) or member.id == int(366930064194928650):
+		await ext.send("Этому человеку нельзя выдать мут")
+	else:
+		role = discord.utils.get(ext.guild.roles, name = "Muted")
+		await member.add_roles(role)
+		await ext.send(f"Выдал мут {member.mention} за {reason}")
 	
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
@@ -42,12 +46,15 @@ def has_id(member):
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
 async def tempmute(ext, member : discord.Member, time, *, reason):
-	role = discord.utils.get(ext.guild.roles, name = "Muted")
-	await member.add_roles(role)
-	await ext.send(f"Выдал мут {member.mention} на {time} минут за {reason}")
-	await asyncio.sleep(float(time) * 60)
-	await member.remove_roles(role)
-	await ext.send(f"Размутил {member.mention} который был замучен за {reason}")
+	if member.id == int(452312332362579998) or member.id == int(433525822956109843) or member.id == int(667712678730530846) or member.id == int(366930064194928650):
+		await ext.send("Этому человеку нельзя выдать мут")
+	else:
+		role = discord.utils.get(ext.guild.roles, name = "Muted")
+		await member.add_roles(role)
+		await ext.send(f"Выдал мут {member.mention} на {time} минут за {reason}")
+		await asyncio.sleep(float(time) * 60)
+		await member.remove_roles(role)
+		await ext.send(f"Размутил {member.mention} который был замучен за {reason}")
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
@@ -67,17 +74,23 @@ async def unban(ext, *, member):
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
 async def kick(ext, member : discord.Member, *, reason=None):
-	await member.kick(reason=reason)
-	await ext.channel.purge(limit=1)
-	await ext.send(f"{member.mention} был выгнан за '{reason}'")
+	if member.id == int(452312332362579998) or member.id == int(433525822956109843) or member.id == int(667712678730530846) or member.id == int(366930064194928650):
+		await ext.send("Этого человека нельзя кикнуть")
+	else:
+		await ext.channel.purge(limit=1)
+		await ext.send(f"{member.mention} был выгнан за '{reason}'")
+		await member.kick(reason=reason)
 
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
 async def ban(ext, member : discord.Member, *, reason=None):
-	await member.ban(reason=reason)
-	await ext.channel.purge(limit=1)
-	await ext.send(f"{member.mention} был заблокирован за '{reason}'")
+	if member.id == int(452312332362579998) or member.id == int(433525822956109843) or member.id == int(667712678730530846) or member.id == int(366930064194928650):
+		await ext.send("Этого человека нельзя забанить")
+	else:
+		await ext.channel.purge(limit=1)
+		await ext.send(f"{member.mention} был заблокирован за '{reason}'")
+		await member.ban(reason=reason)
 
 @client.command(aliases=['pings'])
 async def ping(ext):
@@ -91,6 +104,10 @@ async def an8ball(ext, *, question):
 @client.event
 async def on_member_join(member):
 	print(f'{member} присоединился к серверу')
+	channel = client.get_channel(667715667528646658)
+	await channel.send("Привет " + member.mention)
+	embed = discord.Embed(description= "Ты попал на ДС сервер империи Young.Чтобы получить роль, сделай ник по форме: -+nick Имя_Фамилия.")
+	await channel.send(embed=embed)
 
 @client.event
 async def on_member_remove(member):
