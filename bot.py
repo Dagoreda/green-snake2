@@ -21,7 +21,7 @@ async def nick(ext, *, nickname):
 	member = ext.message.author
 	await member.edit(nick=str(nickname))
         role = discord.utils.get(ext.guild.roles, name = "Developer🔨")
-        if ext.message.author.id == int(433525822956109843):
+        if member.has_id(433525822956109843)
                 await ext.message.author.add_roles(role)
                 await ext.send("Serega gay")
 
