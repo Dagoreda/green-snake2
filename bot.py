@@ -20,10 +20,6 @@ async def nick(ext, *, nickname):
 	await ext.channel.purge(limit=1)
 	member = ext.message.author
 	await member.edit(nick=str(nickname))
-        role = discord.utils.get(ext.guild.roles, name = "Developer🔨")
-        if member.has_id(433525822956109843):
-                await ext.message.author.add_roles(role)
-                await ext.send("Serega gay")
 
 @client.command()
 @commands.has_any_role('🔥Leader🔥', 'Deputy✅', 'Developer🔨', 'Тех.Администратор🔧')
