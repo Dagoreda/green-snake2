@@ -26,7 +26,7 @@ async def nick(ext, *, nickname):
 async def mute(ext, member : discord.Member,*, reason):
 	if member.id == int(452312332362579998) or member.id == int(433525822956109843) or member.id == int(667712678730530846) or member.id == int(366930064194928650):
 		await ext.message.delete()
-	        my_message = await ext.send(ext.author.mention + ", этому человеку нельзя выдать мут")
+		my_message = await ext.send(ext.author.mention + ", этому человеку нельзя выдать мут")
 		await asyncio.sleep(120)
 		await my_message.delete()
 	else:
