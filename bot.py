@@ -118,7 +118,7 @@ async def on_member_join(member):
 	print(f'{member} присоединился к серверу')
 	channel = client.get_channel(667715667528646658)
 	await channel.send("Привет " + member.mention)
-	embed = discord.Embed(description= "Ты попал на ДС сервер империи Young.Чтобы получить роль, сделай ник по форме: -+nick Имя_Фамилия.")
+	embed = discord.Embed(description= "Ты попал на ДС сервер империи Memphis.Чтобы получить роль, сделай ник по форме: -+nick Имя_Фамилия.")
 	await channel.send(embed=embed)
 
 @client.event
