@@ -7,7 +7,7 @@ client = commands.Bot(command_prefix = '-+')
 
 @client.event
 async def on_ready():
-	await client.change_presence(status=discord.Status.idle, activity=discord.Game('Young Empire'))
+	await client.change_presence(status=discord.Status.idle, activity=discord.Game('Memphis Empire'))
 	print('Бот готов.')
 
 @client.command()
