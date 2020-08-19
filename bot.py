@@ -126,4 +126,4 @@ async def on_member_remove(member):
 	print(f"{member} покинул сервер")
 
 token = os.environ.get('BOT_TOKEN')
-client.run(token)
+client.run(str(token))
